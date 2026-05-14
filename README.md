@@ -138,6 +138,20 @@ Nishant Kumar
 }
 ~~~
 
+### ICST Results
+~~~ bibtex
+@INPROCEEDINGS{11512436,
+  author={Kumar, Nishant and Mann, Steve},
+  booktitle={2025 18th International Conference on Sensing Technology (ICST)}, 
+  title={GPU-Accelerated Chirplet Transform: Scalable Runtime Profiling and Analysis}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-6},
+  keywords={Graphics processing units;Timing;Central Processing Unit;Memory;Dictionaries;Testing;Transforms;Electroencephalography;Modeling;Printing;Chirplet Transform;Hardware Acceleration;GPGPU;Unified Memory;Time-Frequency Analysis;EEG Signal Processing;Signal Decomposition},
+  doi={10.1109/ICST66402.2025.11512436}}
+~~~
+
 ## License
 This project is released under the MIT License.
 
