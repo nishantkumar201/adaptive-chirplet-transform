@@ -115,8 +115,9 @@ Preliminary results of this work appeared in the
 (pp. 55–56), Zenodo, 2025.  
 👉 [https://doi.org/10.5281/zenodo.16973160](https://doi.org/10.5281/zenodo.16973160)
 
-A full version with extended profiling and evaluation has been accepted at  
+A full version with extended profiling and evaluation has been published at  
 the *International Conference on Sensing Technology (ICST) 2025*.
+👉 [https://doi.org/10.1109/ICST66402.2025.11512436](https://doi.org/10.1109/ICST66402.2025.11512436)
 
 If you use this repository (CPU or GPU code), please additionally cite: 
 Nishant Kumar, Adaptive Chirplet Transform (ACT) – CPU/GPU Reference Implementation, GitHub repository, 2026.
