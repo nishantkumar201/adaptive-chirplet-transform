@@ -1,5 +1,6 @@
 numpy>=1.25
-# cupy-cuda12x>=13.0      # adjust '12x' to your CUDA version- Only necessary if doing act_gpu.py
+# cupy-cuda12x>=13.0      # adjust '12x' to your CUDA version - only needed for act_gpu_cuda.py and act_lem.py
+# torch>=2.1              # with CUDA support - only needed for act_gpu_pytorch.py
 pandas>=2.0
 mne>=1.4
 scipy>=1.11
