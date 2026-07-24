@@ -9,7 +9,7 @@ It includes:
 - A **CPU reference implementation** (`act.py`) for correctness verification and reproducibility
 - A **GPU-accelerated implementation using CUDA / CuPy** (`act_gpu_cuda.py`), supporting a **hybrid mode** in which chirplet dictionaries are generated on CPU (NumPy) and uploaded to GPU, or generated directly on GPU
 - A **GPU-accelerated implementation using PyTorch** (`act_gpu_pytorch.py`), mirroring the CUDA/CuPy version's hybrid dictionary-generation strategy but built on PyTorch tensors
-- A **Latin-hypercube / coarse-to-fine matching pursuit variant** (`act_lem.py`), which locates chirplet initializations via global Latin hypercube sampling followed by successive coarse-to-fine grid refinement, then polishes them with local gradient-based optimization
+- A **hierarchical coarse-to-fine search variant** (act_lem.py), inspired by Logon Expectation Maximization (LEM). It replaces high-memory global grid searching with Latin Hypercube Sampling (LHS) and iterative local grid refinement before gradient-based polishing.
 
 All implementations share a common mathematical formulation and normalization convention, ensuring numerical consistency across backends.
 
@@ -24,7 +24,8 @@ This implementation is based on the original CPU code by [amanb2000](https://git
 
 ## Old vs. New: Reconstruction Quality
 
-![ACT Old vs. ACT New reconstruction and residual comparison on EEG data](Images/ACT_EEG.pdf)
+![ACT Old vs. ACT New reconstruction and residual comparison on EEG data](/Images/ACT_EEG.png)
+![Rendered PDF](/Images/ACT_EEG.pdf)
 
 The top panel overlays the original EEG waveform against reconstructions from the original (`ACT Old`) and corrected (`ACT New`) implementations; the bottom panel shows the corresponding residuals. The old implementation systematically over- and under-shoots the signal's peaks and troughs and flattens out over the later plateau, leaving a residual that swings persistently in both directions. The corrected implementation tracks the original waveform far more tightly throughout, including through the amplitude changes near the end, and its residual stays close to zero rather than oscillating with the signal itself, indicating the fix addresses a systematic bias in the reconstruction, not just noise. Full quantitative comparisons (multiple signals, error metrics, runtime) are in the arXiv preprint and the upcoming OJSP paper (see Citation below).
 
@@ -53,7 +54,7 @@ The top panel overlays the original EEG waveform against reconstructions from th
 ├── act.py                 # CPU reference implementation
 ├── act_gpu_cuda.py         # GPU-accelerated ACT via CUDA/CuPy (hybrid + full-GPU dictionary generation)
 ├── act_gpu_pytorch.py      # GPU-accelerated ACT via PyTorch (hybrid + full-GPU dictionary generation)
-├── act_lem.py              # Latin-hypercube / coarse-to-fine matching pursuit ACT variant
+├── act_lem.py              # LEM-inspired hierarchical coarse-to-fine ACT search (LHS + local refinement)
 ├── requirements.txt        # Python dependencies
 ├── README.md               # Project documentation
 └── LICENSE                 # MIT License
@@ -67,7 +68,7 @@ The top panel overlays the original EEG waveform against reconstructions from th
 - GPU-accelerated chirplet dictionary construction via CuPy/CUDA (`act_gpu_cuda.py`) or PyTorch (`act_gpu_pytorch.py`)
 - **Hybrid dictionary generation**: chirplets can be built on CPU (NumPy) then transferred to GPU in a single batch, or generated directly on GPU — selectable per run
 - Iterative ACT decomposition (matching pursuit) with local parameter refinement via SciPy optimization
-- Latin-hypercube global search with coarse-to-fine grid refinement (`act_lem.py`) for improved initialization robustness
+- LEM-Inspired Search (act_lem.py): A memory-efficient, hierarchical search strategy combining global Latin Hypercube Sampling (LHS), coarse-to-fine grid refinement, and local optimization (reduces VRAM footprint below 1 GB).
 - Multi-channel / batched signal support
 - Dictionary caching to disk (via `joblib`) to avoid regenerating identical parameter grids
 - Outputs results (parameters, coefficients, reconstruction errors, residues) as CSV / in-memory arrays
