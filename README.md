@@ -37,7 +37,7 @@ The top panel overlays the original EEG waveform against reconstructions from th
 ├── Testing Scripts
 │   ├── Data
 │   │   ├── data_SAAB_SIRS_77GHz_FMCW.npy               # data file not included, see below in Data Section
-│   │   ├── sub-1_task-Sleep_acq-headband_eeg.edf       # data file not included, see below in Data Section
+│   │   ├── sub-1_task-Sleep_acq-headband_eeg.edf
 │   │   ├── S2_E3_A1_basic_movement.mat                 # data file not included, see below in Data Section
 │   │   └── chb01_01.edf                                # data file not included, see below in Data Section
 │   ├── OJSP Testing
@@ -51,7 +51,7 @@ The top panel overlays the original EEG waveform against reconstructions from th
 │   │   ├── ordervsresidueplot.ipynb
 │   │   └── residual.ipynb
 │   └── run_act.ipynb
-├── act.py                 # CPU reference implementation
+├── act.py                  # CPU reference implementation
 ├── act_gpu_cuda.py         # GPU-accelerated ACT via CUDA/CuPy (hybrid + full-GPU dictionary generation)
 ├── act_gpu_pytorch.py      # GPU-accelerated ACT via PyTorch (hybrid + full-GPU dictionary generation)
 ├── act_lem.py              # LEM-inspired hierarchical coarse-to-fine ACT search (LHS + local refinement)
